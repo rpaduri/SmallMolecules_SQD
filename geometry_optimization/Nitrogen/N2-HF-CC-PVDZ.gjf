@@ -1,0 +1,14 @@
+%mem=10GB
+%cpu=0-23
+%chk=N2-HF-CC-PVDZ.chk
+# opt freq hf/cc-pvdz geom=connectivity
+
+N2-opt-HF-CC-PVDZ
+
+0 1
+ N                  0.00000000    2.16880339    0.00000000
+ N                  1.23931618    2.19017091    0.00000000
+
+ 1 2 3.0
+ 2
+

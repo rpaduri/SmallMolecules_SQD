@@ -1,0 +1,46 @@
+Sat Jul 11 01:59:31 IST 2026
+Using 8 threads for PySCF
+Iteration 1
+	Subsample 0
+		Energy: -117.0199938329568
+		Subspace dimension: 342225
+	Subsample 1
+		Energy: -117.01997920665971
+		Subspace dimension: 348100
+	Subsample 2
+		Energy: -117.0199235171229
+		Subspace dimension: 334084
+	Subsample 3
+		Energy: -117.01934726927283
+		Subspace dimension: 342225
+	Subsample 4
+		Energy: -117.01995907194764
+		Subspace dimension: 370881
+	Subsample 5
+		Energy: -117.01997580483598
+		Subspace dimension: 336400
+Iteration 2
+	Subsample 0
+		Energy: -117.02001675139307
+		Subspace dimension: 286225
+	Subsample 1
+		Energy: -117.02000644968311
+		Subspace dimension: 259081
+	Subsample 2
+		Energy: -117.02001603538189
+		Subspace dimension: 303601
+	Subsample 3
+		Energy: -117.02001926834578
+		Subspace dimension: 277729
+	Subsample 4
+		Energy: -117.020018084546
+		Subspace dimension: 285156
+	Subsample 5
+		Energy: -117.02001847184991
+		Subspace dimension: 266256
+converged SCF energy = -117.001266853395
+E(CCSD) = -117.3111469261011  E_corr = -0.3098800727061519
+Reference CCSD Energy: -117.311147 Ha
+Saved sqd_results.pkl
+Saved sqd_energy_plot.png
+Sat Jul 11 02:00:44 IST 2026

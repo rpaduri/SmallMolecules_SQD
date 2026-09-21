@@ -1,0 +1,61 @@
+Sat Jul  4 11:40:00 IST 2026
+Using 8 threads for PySCF
+Iteration 1
+	Subsample 0
+		Energy: -149.7468417134861
+		Subspace dimension: 49920
+	Subsample 1
+		Energy: -149.7170620823645
+		Subspace dimension: 46833
+	Subsample 2
+		Energy: -149.737883841621
+		Subspace dimension: 49059
+Iteration 2
+	Subsample 0
+		Energy: -149.78651895975202
+		Subspace dimension: 83505
+	Subsample 1
+		Energy: -149.77531135230885
+		Subspace dimension: 87248
+	Subsample 2
+		Energy: -149.7746494857111
+		Subspace dimension: 82113
+Iteration 3
+	Subsample 0
+		Energy: -149.79148572600081
+		Subspace dimension: 125628
+	Subsample 1
+		Energy: -149.79362176708838
+		Subspace dimension: 126727
+	Subsample 2
+		Energy: -149.79638479637117
+		Subspace dimension: 124100
+Iteration 4
+	Subsample 0
+		Energy: -149.8002583447351
+		Subspace dimension: 174034
+	Subsample 1
+		Energy: -149.8019384371869
+		Subspace dimension: 166383
+	Subsample 2
+		Energy: -149.79993670551582
+		Subspace dimension: 178324
+Iteration 5
+	Subsample 0
+		Energy: -149.8035167149211
+		Subspace dimension: 212440
+	Subsample 1
+		Energy: -149.80354739676562
+		Subspace dimension: 195776
+	Subsample 2
+		Energy: -149.80353010329662
+		Subspace dimension: 206480
+converged SCF energy = -149.607569045254
+
+WARN: RCCSD method does not support ROHF method. ROHF object is converted to UHF object and UCCSD method is called.
+
+E(UCCSD) = -149.9783862426864  E_corr = -0.3708171974321435
+Reference CCSD Energy: -149.978386 Ha
+Saved sqd_results.pkl
+Saved sqd_energy_plot.png
+Sat Jul  4 11:43:35 IST 2026

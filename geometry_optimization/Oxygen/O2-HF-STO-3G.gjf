@@ -1,0 +1,14 @@
+%mem=10GB
+%CPU=0-23
+%chk=O2-HF-STO-3G.chk
+# opt freq hf/sto-3g pop=nbo geom=connectivity
+
+O2-HF-STO-3G
+
+0 1
+ O                  0.82264953    0.10683761    0.00000000
+ O                 -0.33895047    0.10683761    0.00000000
+
+ 1 2 2.0
+ 2
+

@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/home/aduri/sqd_qc_project/scripts/02_sqd_cluster.py", line 139, in <module>
+    result = diagonalize_fermionic_hamiltonian(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/aduri/sqd-env-new/lib/python3.11/site-packages/qiskit_addon_sqd/fermion.py", line 259, in diagonalize_fermionic_hamiltonian
+    raise ValueError(
+ValueError: Spin symmetrization is only possible if the numbers of alpha and beta electrons are equal. Instead, got 8 and 6.

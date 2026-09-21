@@ -1,0 +1,33 @@
+Sun Jul  5 01:58:25 IST 2026
+Using 8 threads for PySCF
+symmetrize_spin=True, spin_sq target=0.0
+Iteration 1
+	Subsample 0: Energy=-116.93028328737299  Subspace dim=323761
+	Subsample 1: Energy=-116.92643475563926  Subspace dim=320356
+	Subsample 2: Energy=-116.91908412757323  Subspace dim=315844
+Iteration 2
+	Subsample 0: Energy=-116.97694840784294  Subspace dim=373321
+	Subsample 1: Energy=-116.97213212518363  Subspace dim=364816
+	Subsample 2: Energy=-116.98136922173217  Subspace dim=363609
+Iteration 3
+	Subsample 0: Energy=-117.00631942499007  Subspace dim=478864
+	Subsample 1: Energy=-117.01250279662679  Subspace dim=481636
+	Subsample 2: Energy=-117.00167147130182  Subspace dim=490000
+Iteration 4
+	Subsample 0: Energy=-117.02411306192568  Subspace dim=577600
+	Subsample 1: Energy=-117.02177708163484  Subspace dim=583696
+	Subsample 2: Energy=-117.03008053867379  Subspace dim=602176
+Iteration 5
+	Subsample 0: Energy=-117.03629507388686  Subspace dim=703921
+	Subsample 1: Energy=-117.0373162406355  Subspace dim=697225
+	Subsample 2: Energy=-117.03836521526335  Subspace dim=734449
+converged SCF energy = -116.886421058676
+E(CCSD) = -117.0989075750346  E_corr = -0.2124865163589569
+Reference CCSD Energy: -117.098908 Ha
+
+Best SQD energy (Ha): -117.03836521526335
+Best energy error (Ha): 0.060542359771247334
+Iteration index: 4 | Subsample index: 2
+
+Wrote sqd_results.pkl and sqd_energy_plot.png
+Sun Jul  5 02:30:20 IST 2026

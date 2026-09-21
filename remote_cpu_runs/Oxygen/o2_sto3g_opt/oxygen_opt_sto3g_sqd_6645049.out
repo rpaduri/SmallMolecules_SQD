@@ -1,0 +1,23 @@
+Sat Jul  4 21:23:55 IST 2026
+Using 8 threads for PySCF
+Iteration 1
+	Subsample 0: Energy=-147.74782544068242  Subspace dim=448
+	Subsample 1: Energy=-147.74782544068242  Subspace dim=448
+	Subsample 2: Energy=-147.74782544068242  Subspace dim=448
+Iteration 2
+	Subsample 0: Energy=-147.74782544068242  Subspace dim=448
+	Subsample 1: Energy=-147.74782544068242  Subspace dim=448
+	Subsample 2: Energy=-147.74782544068242  Subspace dim=448
+converged SCF energy = -147.632379041531
+
+WARN: RCCSD method does not support ROHF method. ROHF object is converted to UHF object and UCCSD method is called.
+
+E(UCCSD) = -147.7456000233095  E_corr = -0.1132209817786397
+Reference CCSD Energy: -147.745600 Ha
+
+Best SQD energy (Ha): -147.74782544068242
+Best energy error (Ha): 0.002225417372898164
+Iteration index: 0 | Subsample index: 0
+
+Wrote sqd_results.pkl and sqd_energy_plot.png
+Sat Jul  4 21:24:13 IST 2026

@@ -1,0 +1,2 @@
+/home/aduri/sqd_qc_project/runs/propane_sto3g_opt/propane_opt_sto3g_sqd_cluster.py:24: DeprecationWarning: Using Qiskit with Python 3.9 is deprecated as of the 2.1.0 release. Support for running Qiskit with Python 3.9 will be removed in the 2.3.0 release, which coincides with when Python 3.9 goes end of life.
+  from qiskit.primitives import BitArray

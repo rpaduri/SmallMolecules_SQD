@@ -1,0 +1,14 @@
+%mem=10GB
+%cpu=0-23
+%chk=N2-B3LYP-STO-3G.chk
+# opt freq b3lyp/sto-3g pop=nbo geom=connectivity
+
+N2-opt-B3LYP-STO-3G
+
+0 1
+ N                  0.00000000    2.16880339    0.00000000
+ N                  1.23931618    2.19017091    0.00000000
+
+ 1 2 3.0
+ 2
+
