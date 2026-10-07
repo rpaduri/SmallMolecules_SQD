@@ -6,10 +6,10 @@ Code, data and figures accompanying the paper *Basis set and geometry effects in
 
 This repository studies how accurately IBM's **Sample-based Quantum Diagonalization (SQD)** algorithm recovers molecular ground-state energies on real quantum hardware, and how that accuracy depends on two choices made *before* any quantum circuit is run:
 
-- **Basis set** — STO-3G, 6-31G (6-31G(d) for some systems) and cc-pVDZ
+- **Basis set** — STO-3G, 6-31G and cc-pVDZ
 - **Molecular geometry** — unoptimized vs. optimized (Gaussian, HF and B3LYP)
 
-Molecules studied: N₂, O₂, H₂O, CO₂, propane (C₃H₈), cyclopropane and benzene.
+Molecules studied: N₂, O₂, H₂O, CO₂, propane (C₃H₈), cyclopropane (C₃H₆) and benzene (C₆H₆).
 
 ### Pipeline
 
@@ -17,7 +17,7 @@ Molecules studied: N₂, O₂, H₂O, CO₂, propane (C₃H₈), cyclopropane an
 2. **Hamiltonian construction** — PySCF builds the active-space Hamiltonian (`hcore`, `eri`, nuclear repulsion) for each molecule/basis/geometry.
 3. **Quantum sampling** (`notebooks/`) — a LUCJ ansatz is built with `ffsim`, transpiled to an IBM Heron backend (≥133 qubits, e.g. `ibm_torino`, `ibm_brisbane`) and sampled through Qiskit Runtime.
 4. **Classical post-processing** — `qiskit-addon-sqd` performs configuration recovery on the noisy bitstrings, projects the Hamiltonian into the sampled subspace and diagonalizes it. For the large active spaces (propane, cyclopropane, benzene, CO₂, cc-pVDZ O₂) this step is run on a SLURM CPU cluster from a saved sampling result (`sqd_input.pkl`); see `remote_cpu_runs/`.
-5. **Benchmarking** — SQD energies are compared against classical HF/SCF and CCSD references (`energy_calculator.py`) and summarized in `results/`.
+5. **Benchmarking** — SQD energies are compared against classical HF/SCF and CCSD references.
 
 ## Repository layout
 
@@ -26,7 +26,6 @@ Molecules studied: N₂, O₂, H₂O, CO₂, propane (C₃H₈), cyclopropane an
 ├── README.md
 ├── requirements.txt              # pinned Python dependencies
 ├── ibm_account_config_script.py  # saves IBM credentials locally from .env
-├── energy_calculator.py          # classical HF / CCSD(T) reference energies (PySCF)
 ├── geometry_optimization/        # Gaussian .gjf inputs and .log outputs (N2, O2, propane)
 ├── notebooks/                    # hardware-sampling + SQD notebooks (N2, O2)
 │   ├── nitrogen/                 #   <molecule>_<opt|unopt>_<basis>.ipynb
@@ -36,10 +35,6 @@ Molecules studied: N₂, O₂, H₂O, CO₂, propane (C₃H₈), cyclopropane an
 │       ├── sqd_input.pkl         #   hardware samples + Hamiltonian (input to the cluster job)
 │       ├── *_cluster.py / submit_*.sh   # SQD script and SLURM submission script
 │       └── sqd_<jobid>.out/.err  #   job logs
-└── results/
-    ├── results.csv               # master table: E(CCSD), E(SCF), E(SQD), subspace dim, error
-    ├── figures/                  # make_figure*.py scripts and generated plots
-    └── tables/                   # make_*table*.py scripts and generated tables
 ```
 
 ---
@@ -97,7 +92,7 @@ Gaussian (used only for the geometry optimizations) is **not** required to repro
 
 ## 2. IBM Quantum Platform setup
 
-Running the notebooks on real hardware needs an IBM Quantum Platform account, an **instance** (identified by a **CRN**), and an **API key**. Everything except the hardware-sampling notebooks (SQD post-processing, `energy_calculator.py`, figure/table scripts, and the cluster runs from the supplied `sqd_input.pkl`) works without an account.
+Running the notebooks on real hardware needs an IBM Quantum Platform account, an **instance** (identified by a **CRN**), and an **API key**. Everything except the hardware-sampling notebooks (SQD post-processing and the cluster runs from the supplied `sqd_input.pkl`) works without an account.
 
 ### 2.1 Create an account
 
@@ -202,23 +197,6 @@ sbatch submit_propane_opt_sto3g_sqd.sh         # SLURM (edit partition / module 
 
 The scripts write `sqd_results.pkl` and an energy plot next to the input. Budget memory and wall time generously: propane subspaces reach millions of determinants per iteration.
 
-### Classical reference energies
-
-```bash
-python energy_calculator.py
-```
-
-Computes RHF/ROHF, CCSD and CCSD(T) references with PySCF at the basis set and geometry used in the corresponding SQD run. The script is a template: edit the `atom` list, `basis`, `symmetry` and `spin` (0 for closed-shell singlets, 2 for triplet O₂ with ROHF) to match the system. A commented-out CO₂ example is included. See [Section 4.3](#43-classical-reference-energies).
-
-### Reproducing figures and tables
-
-```bash
-cd results/figures && python make_figure4.py     # likewise make_figure5.py, make_figure8.py, ...
-cd ../tables       && python make_energy_tables.py
-```
-
-All scripts read `results/results.csv`.
-
 ---
 
 ## 4. Compute resources: local machines and the Kosambi cluster
@@ -277,20 +255,6 @@ Things worth knowing when reproducing on a similar cluster:
 - `module load` must appear **inside** the batch script; it does not carry over from the login shell.
 - Wall time scales steeply with the number of orbitals; check the partition limit with `sinfo` before raising `--time`.
 - The pinned `requirements.txt` targets a modern Python (3.12) on a modern OS. On an old CentOS 7 system such as Kosambi, new numpy/qiskit wheels (which need glibc ≥ 2.28) do not install, so the cluster environment was built separately from what the module provides. The numerical algorithm is the same; only the interpreter and package versions differ from the local environment.
-
-### 4.3 Classical reference energies
-
-Classical reference energies were computed on local machines with `energy_calculator.py` (`classical_energy_calculator.py` in our working tree). It uses PySCF to compute:
-
-1. **RHF** (closed-shell singlets) or **ROHF** (open-shell triplet O₂),
-2. **CCSD**, and
-3. **CCSD(T)**, as the "gold-standard" reference.
-
-The basis set and geometry must match those of the SQD run being benchmarked; otherwise the energy error is not meaningful (e.g. a cc-pVDZ reference would lie far below an STO-3G SQD energy). These values populate the `E(CCSD)` and `Classical Energy (SCF)` columns of `results/results.csv`, against which SQD energy errors are computed.
-
-## Results summary
-
-`results/results.csv` lists, for each compound / basis / geometry: CCSD energy, SCF energy, best SQD energy, orbital count, qubit counts, subspace dimension and energy error (Hartree). Generated figures and tables are in `results/figures/` and `results/tables/`.
 
 ## Security
 
