@@ -185,6 +185,16 @@ jupyter lab
 
 Open a notebook under `notebooks/nitrogen/` or `notebooks/oxygen/` (named `<molecule>_<opt|unopt>_<basis>.ipynb`), select the `sqd-env` kernel, and run all cells. Each notebook: builds the molecular Hamiltonian with PySCF, constructs the LUCJ circuit with ffsim, transpiles it, submits it to the backend, and runs SQD on the returned samples. **Each run consumes QPU time on your instance.**
 
+**Geometry file paths (O₂ optimized notebooks).** The optimized-geometry O₂ notebooks read their coordinates from a Gaussian `.log` file. Before running, set the `filename = "..."` line in the geometry cell to the corresponding file in `geometry_optimization/Oxygen/` (see table below), as a path relative to the notebook, for example `../../geometry_optimization/Oxygen/O2-HF-STO-3G.log`.
+
+| Notebook | Log file in `geometry_optimization/Oxygen/` |
+|---|---|
+| `oxygen_opt_sto-3g.ipynb` | `O2-HF-STO-3G.log` |
+| `oxygen_opt_6-31g.ipynb` | `O2-HF-6-31G(D).log` |
+| `oxygen_opt_ccpvdz.ipynb` | `O2-HF-CC-PVDZ.log` |
+
+The N₂ optimized notebooks define their coordinates inline and need no path setup.
+
 ### Classical SQD from saved samples (cluster / large active spaces)
 
 For large active spaces the diagonalization is run offline from `sqd_input.pkl` (hardware samples + Hamiltonian; no IBM access needed):
